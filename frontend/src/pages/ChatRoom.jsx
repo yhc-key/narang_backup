@@ -33,7 +33,6 @@ const ChatRoomPage = () => {
     function (frame) {
       console.log("STOMP Connected");
 
-      /* subscribe 설정에 따라 rabbit의 Exchange, Queue가 상당히 많이 바뀜 */
       stomp.subscribe(
         `/exchange/chat.exchange/room.${chatRoomId}`,
         function (content) {
@@ -41,13 +40,9 @@ const ChatRoomPage = () => {
 
           let className = payload.nickname == nickname ? "mine" : "yours";
 
-          const html = `<div class="${className}">
-                        <div class="nickname">${payload.nickname}</div>
-                        <div class="message">${payload.message}</div>
-                    </div>`;
-
-          setChats((prevData) => [...prevData]);
-          chats.insertAdjacentHTML("beforeend", html);
+          setChats((prevData) => [...prevData, {
+            className, nickname, message: msgContent
+          }]);
 
           //밑의 인자는 Queue 생성 시 주는 옵션
           //auto-delete : Consumer가 없으면 스스로 삭제되는 Queue
