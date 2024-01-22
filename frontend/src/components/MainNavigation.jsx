@@ -23,7 +23,7 @@ function MainNavigation() {
             <NavLink to="/planning">Planning</NavLink>
           </li>
           <li>
-            <NavLink to="/chatRoomTest">ChatroomTest</NavLink>
+            <NavLink to="/chat">ChatRoom</NavLink>
           </li>
         </ul>
       </nav>
