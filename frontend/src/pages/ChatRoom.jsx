@@ -1,14 +1,14 @@
 import { Fragment, useState, useEffect, useRef } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
 
 import Button from "../ui/Button";
 
 const ChatRoomPage = () => {
-  const { chatRoomId } = useParams();
   const location = useLocation();
   const nickname = new URLSearchParams(location.search).get("nickname");
+  const chatRoomId = new URLSearchParams(location.search).get("chatRoomId");
   const [chats, setChats] = useState([]);
   const [msgContent, setMsgContent] = useState("");
 
